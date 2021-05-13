@@ -31,14 +31,14 @@ def complete(id):
     task = tasks.query.filter_by(id=id).first()
     task.completed = True 
     db.session.commit()
-    return "Completed Task"
+    return redirect(url_for("home"))
 
-    @app.route("/incomplete/<int:id>")
+    @app.route("/incomplete/<int:id>", methods=["POST"])
     def incomplete(id)
     task = tasks.query.filter_by(id=id).first()
     task.completed - False
     db.session.commit()
-    return "Incomplete Task"
+    return redirect(url_for("home"))
 
 @app.route("/update/<int:id>", methods=["GET", "POST"])
 def update(id)
